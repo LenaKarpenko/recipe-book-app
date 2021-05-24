@@ -12,6 +12,11 @@ const theme = createMuiTheme({
       fontWeight: "bold",
       color: '#FFFFFF'
     },
+    h2: {
+      fontSize: '30px',
+      fontWeight: 'bold',
+      color: '#010205'
+    },
     subtitle1: {
       fontSize: '18px',
       color: '#FFFFFF'
@@ -19,6 +24,12 @@ const theme = createMuiTheme({
   },
   spacing: 8,
   overrides: {
+    MuiContainer: {
+      root: {
+        paddingLeft: '20px',
+        paddingRight: '20px'
+      }
+    },
     MuiButton: {
       root: {
         textTransform: 'capitalize',
