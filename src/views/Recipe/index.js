@@ -17,7 +17,6 @@ const Recipe = () => {
 
   return (<Box display='flex'
                flexDirection='column'
-               height='100vh'
                className={classes.headingBackground}>
     <SearchHeading handleBackClick={handleBackClick}/>
     <BodyCard>

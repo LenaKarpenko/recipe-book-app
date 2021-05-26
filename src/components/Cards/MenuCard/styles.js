@@ -11,6 +11,11 @@ const styles = {
       textTransform: 'capitalize',
       fontSize: '14px',
       marginTop: '13px'
+    },
+    '&:hover': {
+      border: '0.5px solid rgba(180, 194, 211, 0.5)',
+      boxShadow: '0px 5px 20px rgba(0, 0, 0, 0.24)',
+      transition: '0.2s'
     }
   }
 }
