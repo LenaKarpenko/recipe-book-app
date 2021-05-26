@@ -46,16 +46,32 @@ const theme = createMuiTheme({
         }
       }
     },
+    MuiIconButton: {
+      root: {
+        backgroundColor: '#C4C4C4',
+        '&:hover': {
+          backgroundColor: '#a8a8a8'
+        }
+      },
+      sizeSmall: {
+        width: '50px',
+        height: '50px'
+      }
+    },
     MuiInputBase: {
       root: {
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        color: '#FFFFFF'
+        width: '270px',
+        '@media (max-width: 375px)': {
+          width: '240px'
+        }
       }
     },
     MuiOutlinedInput: {
       root: {
         width: '320px',
-        borderRadius: '10px'
+        borderRadius: '10px',
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        color: '#FFFFFF'
       },
     },
     MuiFormLabel: {

@@ -1,5 +1,6 @@
 import React from "react";
 import {Box, Container, Grid, makeStyles, Typography} from "@material-ui/core";
+import {useHistory} from 'react-router-dom'
 import BodyCard from "../../components/Cards/BodyCard";
 import MenuCard from "../../components/Cards/MenuCard";
 import styles from "./styles";
@@ -13,6 +14,12 @@ const menus = [
 
 const Home = () => {
   const classes = useStyles()
+  const history = useHistory()
+
+  const handleMenuClick = (e) => {
+    e.preventDefault()
+    history.push('/recipe')
+  }
 
   return (
     <Box className={classes.pageBackground}
@@ -37,7 +44,7 @@ const Home = () => {
               spacing={3}>
           {menus.map(menu => (
             <Grid item  key={menu}>
-              <MenuCard type={menu}/>
+              <MenuCard type={menu} handleClick={handleMenuClick}/>
             </Grid>
           ))}
         </Grid>

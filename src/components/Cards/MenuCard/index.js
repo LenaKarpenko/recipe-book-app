@@ -14,11 +14,12 @@ const colors = {
 }
 
 const MenuCard = (props) => {
-  const {type} = props
+  const {type, handleClick} = props
   const classes = useStyles()
 
   return (
     <Box className={classes.card}
+         onClick={handleClick}
          display='flex'
          flexDirection='column'
          alignItems='center'
