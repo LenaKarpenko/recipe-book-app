@@ -1,4 +1,3 @@
-import recipeHeading from './../../../assets/img-recipe-heading.jpg'
 
 const styles = {
   h2: {

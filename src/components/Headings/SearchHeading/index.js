@@ -7,7 +7,7 @@ import styles from "./styles";
 const useStyles = makeStyles(styles)
 
 const SearchHeading = (props) => {
-  const {handleBackClick} = props
+  const {handleBackClick, handleQueryChange} = props
   const classes = useStyles()
 
   return (
@@ -26,9 +26,10 @@ const SearchHeading = (props) => {
         <Typography variant='h2'
                     component='h2'
                     className={[classes.h2, classes["mb-1"]].join(' ')}
-        >Search by Recipe</Typography>
+        >Search Recipe</Typography>
         <Paper component='form' className={classes.searchBtnRoot}>
           <InputBase placeholder='What recipe are you looking for?'
+                     onChange={handleQueryChange}
                      inputProps={{ 'aria-label': 'what recipe are you looking for' }}/>
           <Search/>
         </Paper>

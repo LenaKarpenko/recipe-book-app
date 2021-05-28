@@ -17,6 +17,11 @@ const theme = createMuiTheme({
       fontWeight: 'bold',
       color: '#010205'
     },
+    h6: {
+      color: '#0A0A0A',
+      fontSize: '14px',
+      fontWeight: 'normal'
+    },
     subtitle1: {
       fontSize: '18px',
       color: '#FFFFFF'
@@ -79,6 +84,11 @@ const theme = createMuiTheme({
         color: '#FFFFFF'
       }
     },
+    MuiTypography: {
+      noWrap: {
+        whiteSpace: 'normal'
+      }
+    }
   }
 })
 
