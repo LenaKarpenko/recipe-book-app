@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {Box, Grid, makeStyles} from "@material-ui/core";
 import {useHistory} from 'react-router-dom'
-import axios from "axios";
 import SearchHeading from "../../components/Headings/SearchHeading";
 import BodyCard from "../../components/Cards/BodyCard";
 import RecipeCard from "../../components/Cards/RecipeCard";
 import Tag from "../../components/UIElements/Tag";
 import styles from "./styles";
+import {getRecipes} from "../../api";
 
 const useStyles = makeStyles(styles)
 
-const Recipe = () => {
+const RecipeSearch = (props) => {
   const [query, setQuery] = useState('')
   const [recipes, setRecipes] = useState([])
   const [total, setTotal] = useState(0)
@@ -24,26 +24,35 @@ const Recipe = () => {
 
   const handleQueryChange = (e) => {
     e.preventDefault()
-    console.log(e.target.value)
     setQuery(e.target.value)
   }
 
-  const getRecipes = async () => {
-    if (query === '') return
-    const result = await axios.get(`https://api.edamam.com/search?q=${query}&app_id=3ce529d2&app_key=
-    579109403d27f9b4c55528bd564333a6&from=0&to=30`)
-    console.log(result.data)
-    setRecipes(result.data.hits)
-    setTotal(result.data.count)
+  const handleRecipeClick = (index) => (e) => {
+    history.push(`/recipe/${++index}`)
   }
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      getRecipes()
+      if (query === '') return
+
+      getRecipes(query)
+        .then(response => response)
+        .then(result => {
+          console.log(result)
+          if (result.status >= 400) {
+            return
+          }
+          setRecipes(result.data.hits)
+          setTotal(result.data.count)
+      }).catch(error => {
+        console.log(error)
+      })
     }, 1000)
 
     return () => clearTimeout(timer)
   }, [query])
+
+
 
   return (<Box display='flex'
                flexDirection='column'
@@ -59,7 +68,9 @@ const Recipe = () => {
             spacing={3}>
         {recipes ? recipes.map((recipe, index) => {
           return (<Grid item key={index}>
-            <RecipeCard imageSrc={recipe.recipe.image} title={recipe.recipe.label}/>
+            <RecipeCard imageSrc={recipe.recipe.image}
+                        title={recipe.recipe.label}
+                        onClick={handleRecipeClick(index)}/>
           </Grid>)
         }) : null}
       </Grid>
@@ -67,4 +78,4 @@ const Recipe = () => {
   </Box>)
 }
 
-export default Recipe
+export default RecipeSearch
