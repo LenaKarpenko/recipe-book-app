@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {Box, Grid, makeStyles} from "@material-ui/core";
 import {useHistory} from 'react-router-dom'
 import SearchHeading from "../../components/Headings/SearchHeading";
@@ -7,10 +7,13 @@ import RecipeCard from "../../components/Cards/RecipeCard";
 import Tag from "../../components/UIElements/Tag";
 import styles from "./styles";
 import {getRecipes} from "../../api";
+import {AppContext, AppActionType} from "../../shared/reducer";
 
 const useStyles = makeStyles(styles)
 
 const RecipeSearch = (props) => {
+  const {reducer: { dispatch }} = useContext(AppContext)
+
   const [query, setQuery] = useState('')
   const [recipes, setRecipes] = useState([])
   const [total, setTotal] = useState(0)
@@ -28,6 +31,7 @@ const RecipeSearch = (props) => {
   }
 
   const handleRecipeClick = (index) => (e) => {
+    dispatch({type: AppActionType.SET_RECIPES, payload: recipes})
     history.push(`/recipe/${++index}`)
   }
 
