@@ -18,7 +18,7 @@ const Home = () => {
 
   const handleMenuClick = (e) => {
     e.preventDefault()
-    history.push('/recipe')
+    history.push('/recipes')
   }
 
   return (

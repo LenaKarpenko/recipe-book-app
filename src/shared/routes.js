@@ -1,11 +1,16 @@
 import Login from "../views/Login";
 import Home from "../views/Home";
-import Recipe from "../views/Recipe";
+import RecipeSearch from "../views/RecipeSearch";
+import Recipe from "../views/RecipeSearch/Recipe";
 
 export const routes = [
   {
-    path: '/recipe',
+    path: '/recipe/:id',
     component: Recipe
+  },
+  {
+    path: '/recipes',
+    component: RecipeSearch,
   },
   {
     path: '/home',

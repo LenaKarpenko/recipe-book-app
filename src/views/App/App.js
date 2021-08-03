@@ -1,8 +1,10 @@
-import './App.css';
+import {useReducer} from "react";
 import {ThemeProvider} from "@material-ui/core";
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import theme from "../../shared/theme";
 import {routes} from '../../shared/routes'
+import {AppContext, reducer, initialState} from "../../shared/reducer";
+import {log} from "../../shared/utils/logger";
 
 export const RouteWithSubRoutes = route => {
   return <Route path={route.path} render={(props ) => (
@@ -11,16 +13,22 @@ export const RouteWithSubRoutes = route => {
 }
 
 function App() {
+  const [state, dispatch] = useReducer(reducer, initialState)
+
+  log(state);
+
   return (
-    <BrowserRouter>
-      <ThemeProvider theme={theme}>
-        <Switch>
-          {routes.map(route => (
-            <RouteWithSubRoutes key={route.path} {...route}/>
-          ))}
-        </Switch>
-      </ThemeProvider>
-    </BrowserRouter>
+    <AppContext.Provider value={{ reducer: { state, dispatch }}}>
+      <BrowserRouter>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            {routes.map(route => (
+              <RouteWithSubRoutes key={route.path} {...route}/>
+            ))}
+          </Switch>
+        </ThemeProvider>
+      </BrowserRouter>
+    </AppContext.Provider>
   );
 }
 

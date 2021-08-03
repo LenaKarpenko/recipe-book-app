@@ -25,6 +25,10 @@ const theme = createMuiTheme({
     subtitle1: {
       fontSize: '18px',
       color: '#FFFFFF'
+    },
+    caption: {
+      fontSize: '15px',
+      color: '#B4C2D3'
     }
   },
   spacing: 8,
