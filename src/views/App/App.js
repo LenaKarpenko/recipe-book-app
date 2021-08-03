@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import theme from "../../shared/theme";
 import {routes} from '../../shared/routes'
 import {AppContext, reducer, initialState} from "../../shared/reducer";
+import {log} from "../../shared/utils/logger";
 
 export const RouteWithSubRoutes = route => {
   return <Route path={route.path} render={(props ) => (
@@ -14,7 +15,7 @@ export const RouteWithSubRoutes = route => {
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  console.log(state)
+  log(state);
 
   return (
     <AppContext.Provider value={{ reducer: { state, dispatch }}}>

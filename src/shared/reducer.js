@@ -1,4 +1,5 @@
 import {createContext} from "react";
+import { createReducer } from "./utils/createReducer";
 
 export const AppActionType = {
   SET_RECIPES: 'set recipes',
@@ -10,13 +11,10 @@ export const initialState = {
   error: null
 }
 
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case AppActionType.SET_RECIPES: return {...state, recipes: action.payload}
-    case AppActionType.SET_ERROR: return {...state, error: action.payload}
-    default: return state
-  }
-}
+export const reducer = createReducer({
+  [AppActionType.SET_RECIPES]: (state, action) => ({...state, recipes: action.payload}),
+  [AppActionType.SET_ERROR]: (state, action) => ({...state, error: action.payload}),
+})
 
 export const AppContext = createContext({
   reducer: {
